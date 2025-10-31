@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -137,6 +137,118 @@ export default function ParticipantsModule() {
   const [filterStatus, setFilterStatus] = useState("All");
   const [sortByTeam, setSortByTeam] = useState(false);
 
+  // Import refs/handlers
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const handleImportClick = () => fileInputRef.current?.click();
+
+  async function handleFileSelected(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      if (file.name.toLowerCase().endsWith(".csv")) {
+        const text = await file.text();
+        const rows = parseCSV(text);
+        const added = ingestRows(rows);
+        toast("Imported participants", { description: `${added} row(s) added from CSV.` });
+      } else if (file.name.toLowerCase().endsWith(".xlsx") || file.name.toLowerCase().endsWith(".xls")) {
+        try {
+          const importer = new Function("m", "return import(m)");
+          // @ts-ignore - dynamic import via Function to avoid TS module resolution
+          const mod = await importer("xlsx");
+          const XLSX: any = mod?.default ?? mod;
+          const data = await file.arrayBuffer();
+          const wb = XLSX.read(data);
+          const ws = wb.Sheets[wb.SheetNames[0]];
+          const json = XLSX.utils.sheet_to_json(ws, { defval: "" }) as any[];
+          const rows = json.map((r: any) => Object.fromEntries(Object.entries(r).map(([k, v]) => [String(k).toLowerCase(), v])));
+          const added = ingestRows(rows);
+          toast("Imported participants", { description: `${added} row(s) added from Excel.` });
+        } catch (err) {
+          toast("Excel import unavailable", { description: "Install 'xlsx' to enable Excel import." });
+        }
+      } else {
+        toast("Unsupported file", { description: "Please select a .csv or .xlsx file." });
+      }
+    } catch (err) {
+      toast("Import failed", { description: err instanceof Error ? err.message : "Unknown error" });
+    } finally {
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  }
+
+  function parseCSV(text: string) {
+    const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
+    if (lines.length === 0) return [] as any[];
+    const header = splitCSVLine(lines[0]).map((h) => h.trim().toLowerCase());
+    const rows: any[] = [];
+    for (let i = 1; i < lines.length; i++) {
+      const cols = splitCSVLine(lines[i]);
+      const obj: any = {};
+      header.forEach((h, idx) => {
+        obj[h] = cols[idx] ?? "";
+      });
+      rows.push(obj);
+    }
+    return rows;
+  }
+
+  function splitCSVLine(line: string): string[] {
+    const result: string[] = [];
+    let cur = "";
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') {
+        if (inQuotes && line[i + 1] === '"') { cur += '"'; i++; }
+        else { inQuotes = !inQuotes; }
+      } else if (ch === "," && !inQuotes) {
+        result.push(cur);
+        cur = "";
+      } else {
+        cur += ch;
+      }
+    }
+    result.push(cur);
+    return result.map((s) => s.trim());
+  }
+
+  function ingestRows(rows: any[]): number {
+    if (!rows || rows.length === 0) return 0;
+    // Normalize keys
+    const normalized = rows.map((r) => {
+      const obj: any = {};
+      for (const [k, v] of Object.entries(r)) {
+        obj[String(k).toLowerCase()] = v;
+      }
+      return obj;
+    });
+    const toAdd: Participant[] = [];
+    for (const r of normalized) {
+      const name = String(r.name ?? "").trim();
+      const ageNum = Number(r.age ?? 0);
+      const gender = String(r.gender ?? "").trim();
+      const team = String(r.team ?? "").trim();
+      const role = String(r.role ?? "").trim();
+      const contact = String(r.contact ?? r.email ?? "").trim();
+      const status = String(r.status ?? "Pending").trim() || "Pending";
+      if (!name || !ageNum || !gender || !team || !role || !contact) {
+        continue;
+      }
+      toAdd.push({
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        name,
+        age: ageNum,
+        gender,
+        team,
+        role,
+        contact,
+        status: status === "Approved" ? "Approved" : "Pending",
+      });
+    }
+    if (toAdd.length > 0) setParticipants((curr) => [...toAdd, ...curr]);
+    return toAdd.length;
+  }
+
   // Add Team state
   type TeamMemberForm = { name: string; age: number | ""; gender: string; role: string; contact: string };
   const [teamOpen, setTeamOpen] = useState(false);
@@ -243,7 +355,9 @@ export default function ParticipantsModule() {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap gap-2 items-end justify-between">
-        <h2 className="text-xl font-semibold">Participants</h2>
+        <div>
+          <h2 className="text-xl font-semibold">Participants</h2>
+        </div>
         <div className="flex gap-2">
           <Button variant="outline" onClick={() => setTeamOpen(true)}>Add Team</Button>
           <Button onClick={() => setAddOpen(true)}>Add Participant</Button>
@@ -279,6 +393,10 @@ export default function ParticipantsModule() {
           </Button>
           <Button type="button" variant="outline" onClick={exportCSV} disabled={filteredParticipants.length === 0}>
             Export CSV
+          </Button>
+          <input ref={fileInputRef} type="file" accept=".csv,.xlsx,.xls" onChange={handleFileSelected} className="hidden" />
+          <Button type="button" variant="outline" onClick={handleImportClick}>
+            Import
           </Button>
         </div>
       </div>

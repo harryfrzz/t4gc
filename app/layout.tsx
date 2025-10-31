@@ -22,16 +22,18 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-neutral-50 min-h-screen flex">
-        <aside className="w-56 h-screen border-r border-neutral-200 bg-white flex flex-col p-4 gap-2">
+      <body className="bg-gradient-to-br from-neutral-50 to-white min-h-screen flex">
+        <aside className="w-56 h-screen border-r border-neutral-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 flex flex-col p-4 gap-2">
           <div className="mb-8 mt-2 font-bold text-lg tracking-tight">Y-Ultimate</div>
           <nav className="flex flex-col gap-1">
             <Link href="/dashboard" className={cn("px-3 py-2 rounded-md hover:bg-neutral-100 transition", "font-medium")}>Dashboard</Link>
+            <span className="px-3 py-2 rounded-md text-neutral-400 cursor-not-allowed">Tournaments</span>
+            <span className="px-3 py-2 rounded-md text-neutral-400 cursor-not-allowed">Sponsorships</span>
+            <span className="px-3 py-2 rounded-md text-neutral-400 cursor-not-allowed">Gallery</span>
+            <span className="px-3 py-2 rounded-md text-neutral-400 cursor-not-allowed">Past Tournaments</span>
           </nav>
         </aside>
-        <main className="flex-1 px-6 py-8">
-          {children}
-        </main>
+        <main className="flex-1 px-6 py-8">{children}</main>
       </body>
     </html>
   );
