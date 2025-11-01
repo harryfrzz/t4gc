@@ -10,6 +10,7 @@ const cards = [
   { title: "Sponsorship Management", href: "/sponsorship" },
   { title: "Gallery", href: "/gallery" },
   { title: "Past Tournaments", href: "/past-tournaments" },
+  { title: "Forms", href: "/forms" },
 ];
 
 export default function DashboardPage() {
