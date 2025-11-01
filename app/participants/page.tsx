@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import ParticipantsModule from "@/components/participants/ParticipantsModule";
 import TimelineView from "@/components/participants/TimelineView";
 
-export default function ParticipantsPage() {
+function ParticipantsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const initial = (searchParams.get("tab") as "participants" | "timeline") || "participants";
@@ -42,5 +42,13 @@ export default function ParticipantsPage() {
         {activeTab === "participants" ? <ParticipantsModule /> : <TimelineView />}
       </div>
     </div>
+  );
+}
+
+export default function ParticipantsPage() {
+  return (
+    <Suspense fallback={<div className="text-muted-foreground">Loading...</div>}>
+      <ParticipantsContent />
+    </Suspense>
   );
 }
