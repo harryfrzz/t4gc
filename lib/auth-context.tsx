@@ -6,6 +6,7 @@ import { useRouter, usePathname } from "next/navigation";
 interface User {
   email: string;
   name: string;
+  role: "user" | "event-hoster";
 }
 
 interface AuthContextType {
@@ -22,7 +23,16 @@ const TEST_EMAIL = "test@example.com";
 const TEST_PASSWORD = "test123";
 const TEST_USER: User = {
   email: TEST_EMAIL,
-  name: "Test User"
+  name: "Test User",
+  role: "user"
+};
+
+const EVENT_HOSTER_EMAIL = "hoster@example.com";
+const EVENT_HOSTER_PASSWORD = "hoster123";
+const EVENT_HOSTER_USER: User = {
+  email: EVENT_HOSTER_EMAIL,
+  name: "Event Hoster",
+  role: "event-hoster"
 };
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -46,11 +56,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [pathname, router]);
 
   const login = (email: string, password: string): boolean => {
+    let currentUser: User | null = null;
+    
     if (email === TEST_EMAIL && password === TEST_PASSWORD) {
+      currentUser = TEST_USER;
+    } else if (email === EVENT_HOSTER_EMAIL && password === EVENT_HOSTER_PASSWORD) {
+      currentUser = EVENT_HOSTER_USER;
+    }
+    
+    if (currentUser) {
       setIsAuthenticated(true);
-      setUser(TEST_USER);
+      setUser(currentUser);
       localStorage.setItem("isAuthenticated", "true");
-      localStorage.setItem("user", JSON.stringify(TEST_USER));
+      localStorage.setItem("user", JSON.stringify(currentUser));
       return true;
     }
     return false;

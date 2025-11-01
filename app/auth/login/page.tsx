@@ -75,9 +75,9 @@ export default function LoginPage() {
             <div className="text-xs text-muted-foreground bg-blue-50 border border-blue-200 rounded-md p-3">
               <strong>Test Credentials:</strong>
               <br />
-              Email: test@example.com
+              <strong>Regular User:</strong> test@example.com / test123
               <br />
-              Password: test123
+              <strong>Event Hoster:</strong> hoster@example.com / hoster123
             </div>
 
             <Button type="submit" className="w-full">

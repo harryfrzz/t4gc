@@ -35,8 +35,8 @@ export function Sidebar() {
         <Link 
           href="/dashboard" 
           className={cn(
-            "px-3 py-2 rounded-md hover:bg-neutral-100 transition font-medium",
-            pathname === "/dashboard" && "bg-neutral-100"
+            "px-3 py-2 rounded-md hover:bg-neutral-100 transition",
+            pathname === "/dashboard" && "bg-neutral-100 font-medium"
           )}
         >
           Dashboard
@@ -45,25 +45,27 @@ export function Sidebar() {
           href="/participants" 
           className={cn(
             "px-3 py-2 rounded-md hover:bg-neutral-100 transition",
-            pathname === "/participants" && "bg-neutral-100"
+            pathname === "/participants" && "bg-neutral-100 font-medium"
           )}
         >
           Tournaments
         </Link>
-        <Link 
-          href="/sponsorship" 
-          className={cn(
-            "px-3 py-2 rounded-md hover:bg-neutral-100 transition",
-            pathname === "/sponsorship" && "bg-neutral-100"
-          )}
-        >
-          Sponsorships
-        </Link>
+        {user?.role === "event-hoster" && (
+          <Link 
+            href="/sponsorship" 
+            className={cn(
+              "px-3 py-2 rounded-md hover:bg-neutral-100 transition",
+              pathname === "/sponsorship" && "bg-neutral-100 font-medium"
+            )}
+          >
+            Sponsorships
+          </Link>
+        )}
         <Link 
           href="/gallery" 
           className={cn(
             "px-3 py-2 rounded-md hover:bg-neutral-100 transition",
-            pathname === "/gallery" && "bg-neutral-100"
+            pathname === "/gallery" && "bg-neutral-100 font-medium"
           )}
         >
           Gallery
@@ -72,7 +74,7 @@ export function Sidebar() {
           href="/past-tournaments" 
           className={cn(
             "px-3 py-2 rounded-md hover:bg-neutral-100 transition",
-            pathname === "/past-tournaments" && "bg-neutral-100"
+            pathname === "/past-tournaments" && "bg-neutral-100 font-medium"
           )}
         >
           Past Tournaments
