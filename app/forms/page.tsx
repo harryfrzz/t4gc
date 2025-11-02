@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getAllForms, deleteForm } from '@/lib/api/forms';
+import { clearMockCache } from '@/lib/mockData/forms';
 import { Form } from '@/types/forms';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -25,7 +26,7 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { Input } from '@/components/ui/input';
-import { PlusCircle, FileText, Edit, BarChart3, Share2, Copy, Check, Mail, MessageCircle, Send, Trash2, AlertTriangle } from 'lucide-react';
+import { PlusCircle, FileText, Edit, BarChart3, Share2, Copy, Check, Mail, MessageCircle, Send, Trash2, AlertTriangle, RotateCcw } from 'lucide-react';
 
 export default function FormsPage() {
   const router = useRouter();
@@ -57,6 +58,13 @@ export default function FormsPage() {
       console.error('Error loading forms:', err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleResetData = () => {
+    if (confirm('⚠️ This will reset all demo data to defaults. All your created forms will be lost. Continue?')) {
+      clearMockCache();
+      window.location.reload();
     }
   };
 
@@ -154,23 +162,34 @@ export default function FormsPage() {
   return (
     <>
       <div className="container mx-auto py-8">
-        {/* Offline Mode Indicator */}
+        {/* Offline Mode Indicator with localStorage caching info */}
         {OFFLINE_MODE && (
           <div className="mb-4 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
-            <div className="flex items-center gap-2">
-              <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-amber-600 dark:text-amber-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                </svg>
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-2 flex-1">
+                <div className="flex-shrink-0">
+                  <svg className="h-5 w-5 text-amber-600 dark:text-amber-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
+                    🔌 Demo Mode Active (with Local Caching)
+                  </p>
+                  <p className="text-xs text-amber-700 dark:text-amber-300 mt-1">
+                    Running with cached mock data. Your changes persist across page refreshes! Data is stored in your browser's localStorage.
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
-                  🔌 Demo Mode Active
-                </p>
-                <p className="text-xs text-amber-700 dark:text-amber-300 mt-1">
-                  Running with mock data. All changes are temporary and stored in memory.
-                </p>
-              </div>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={handleResetData}
+                className="flex-shrink-0 border-amber-300 dark:border-amber-700 hover:bg-amber-100 dark:hover:bg-amber-800"
+              >
+                <RotateCcw className="mr-2 h-4 w-4" />
+                Reset Data
+              </Button>
             </div>
           </div>
         )}
