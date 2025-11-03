@@ -4,7 +4,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-context";
 import { usePathname, useRouter } from "next/navigation";
-import { LogOut, User, Settings, Plus } from "lucide-react";
+import { LogOut, User, Settings, Plus, FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
   DropdownMenu,
@@ -55,6 +55,16 @@ export function Sidebar() {
           )}
         >
           {t('sidebar.tournaments')}
+        </Link>
+        <Link 
+          href="/forms" 
+          className={cn(
+            "px-3 py-2 rounded-md hover:bg-neutral-100 transition flex items-center gap-2",
+            pathname.startsWith("/forms") && "bg-neutral-100 font-medium"
+          )}
+        >
+          <FileText className="h-4 w-4" />
+          {t('sidebar.forms')}
         </Link>
         {user?.role === "event-hoster" && (
           <Link 
