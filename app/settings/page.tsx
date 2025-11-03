@@ -9,6 +9,7 @@ import { useTheme } from "@/lib/theme-context";
 import { useLanguage } from "@/lib/language-context";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 import {
   Select,
   SelectContent,
@@ -57,7 +58,7 @@ export default function SettingsPage() {
     <div className="max-w-4xl mx-auto space-y-6">
       <div>
         <h1 className="text-2xl font-bold">{t('settings.title')}</h1>
-        <p className="text-neutral-600 mt-1">{t('settings.description')}</p>
+        <p className="text-neutral-600 dark:text-neutral-400 mt-1">{t('settings.description')}</p>
       </div>
 
       <Card>
@@ -74,7 +75,7 @@ export default function SettingsPage() {
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label>{t('settings.notifications.email')}</Label>
-              <p className="text-sm text-neutral-500">{t('settings.notifications.emailDesc')}</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.notifications.emailDesc')}</p>
             </div>
             <button
               onClick={() => setSettings({ ...settings, emailNotifications: !settings.emailNotifications })}
@@ -93,7 +94,7 @@ export default function SettingsPage() {
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label>{t('settings.notifications.push')}</Label>
-              <p className="text-sm text-neutral-500">{t('settings.notifications.pushDesc')}</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.notifications.pushDesc')}</p>
             </div>
             <button
               onClick={() => setSettings({ ...settings, pushNotifications: !settings.pushNotifications })}
@@ -112,7 +113,7 @@ export default function SettingsPage() {
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label>{t('settings.notifications.tournament')}</Label>
-              <p className="text-sm text-neutral-500">{t('settings.notifications.tournamentDesc')}</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.notifications.tournamentDesc')}</p>
             </div>
             <button
               onClick={() => setSettings({ ...settings, tournamentUpdates: !settings.tournamentUpdates })}
@@ -144,7 +145,7 @@ export default function SettingsPage() {
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label>{t('settings.appearance.darkMode')}</Label>
-              <p className="text-sm text-neutral-500">{t('settings.appearance.darkModeDesc')}</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.appearance.darkModeDesc')}</p>
             </div>
             <button
               onClick={handleThemeToggle}
@@ -166,7 +167,7 @@ export default function SettingsPage() {
                 <Languages className="h-4 w-4" />
                 {t('settings.appearance.language')}
               </Label>
-              <p className="text-sm text-neutral-500">{t('settings.appearance.languageDesc')}</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.appearance.languageDesc')}</p>
             </div>
             <Select value={language} onValueChange={changeLanguage}>
               <SelectTrigger className="w-[200px]">
@@ -201,7 +202,7 @@ export default function SettingsPage() {
                 <Lock className="h-4 w-4" />
                 {t('settings.security.twoFactor')}
               </Label>
-              <p className="text-sm text-neutral-500">{t('settings.security.twoFactorDesc')}</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.security.twoFactorDesc')}</p>
             </div>
             <button
               onClick={() => setSettings({ ...settings, twoFactor: !settings.twoFactor })}
@@ -223,7 +224,7 @@ export default function SettingsPage() {
                 <Eye className="h-4 w-4" />
                 {t('settings.security.publicProfile')}
               </Label>
-              <p className="text-sm text-neutral-500">{t('settings.security.publicProfileDesc')}</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.security.publicProfileDesc')}</p>
             </div>
             <button
               onClick={() => setSettings({ ...settings, publicProfile: !settings.publicProfile })}
@@ -256,7 +257,7 @@ export default function SettingsPage() {
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label>{t('settings.danger.deleteAccount')}</Label>
-              <p className="text-sm text-neutral-500">{t('settings.danger.deleteAccountDesc')}</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('settings.danger.deleteAccountDesc')}</p>
             </div>
             <Button variant="destructive" size="sm">
               {t('settings.danger.deleteButton')}

@@ -40,6 +40,7 @@
     "createTournament": "Crear Torneo",
     "participants": "participantes",
     "viewDetails": "Ver Detalles",
+    "completeTournament": "Completar Torneo",
     "status": {
       "upcoming": "Próximo",
       "ongoing": "En Curso",

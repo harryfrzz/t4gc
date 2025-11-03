@@ -40,6 +40,7 @@
     "createTournament": "टूर्नामेंट बनाएं",
     "participants": "प्रतिभागी",
     "viewDetails": "विवरण देखें",
+    "completeTournament": "टूर्नामेंट पूर्ण करें",
     "status": {
       "upcoming": "आगामी",
       "ongoing": "चल रहा है",

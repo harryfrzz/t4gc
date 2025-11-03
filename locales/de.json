@@ -40,6 +40,7 @@
     "createTournament": "Turnier Erstellen",
     "participants": "Teilnehmer",
     "viewDetails": "Details Anzeigen",
+    "completeTournament": "Turnier Abschließen",
     "status": {
       "upcoming": "Bevorstehend",
       "ongoing": "Laufend",

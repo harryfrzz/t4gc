@@ -40,6 +40,7 @@
     "createTournament": "토너먼트 만들기",
     "participants": "참가자",
     "viewDetails": "세부정보 보기",
+    "completeTournament": "토너먼트 완료",
     "status": {
       "upcoming": "예정",
       "ongoing": "진행 중",

@@ -40,6 +40,7 @@
     "createTournament": "போட்டியை உருவாக்கவும்",
     "participants": "பங்கேற்பாளர்கள்",
     "viewDetails": "விவரங்களைக் காண்க",
+    "completeTournament": "போட்டியை முடிக்கவும்",
     "status": {
       "upcoming": "வரவிருக்கும்",
       "ongoing": "நடைபெறுகிறது",

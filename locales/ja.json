@@ -40,6 +40,7 @@
     "createTournament": "トーナメントを作成",
     "participants": "参加者",
     "viewDetails": "詳細を表示",
+    "completeTournament": "トーナメントを完了",
     "status": {
       "upcoming": "開催予定",
       "ongoing": "進行中",

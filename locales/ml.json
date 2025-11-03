@@ -40,6 +40,7 @@
     "createTournament": "ടൂർണമെന്റ് സൃഷ്ടിക്കുക",
     "participants": "പങ്കാളികൾ",
     "viewDetails": "വിശദാംശങ്ങൾ കാണുക",
+    "completeTournament": "ടൂർണമെന്റ് പൂർത്തിയാക്കുക",
     "status": {
       "upcoming": "വരാനിരിക്കുന്ന",
       "ongoing": "നടന്നുകൊണ്ടിരിക്കുന്ന",
