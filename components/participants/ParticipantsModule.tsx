@@ -9,6 +9,7 @@ import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from "@/components/u
 import { Input } from "@/components/ui/input";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { ParticipantHoverCard } from "./ParticipantHoverCard";
 
 // Helper function to send notifications via API
 async function sendNotification(action: string, data: Record<string, any>) {
@@ -561,7 +562,13 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
                   </tr>
                   {teamParticipants.map((p) => (
                     <tr key={p.id} className="border-b hover:bg-neutral-50">
-                      <td className="px-4 py-2">{p.name}</td>
+                      <td className="px-4 py-2">
+                        <ParticipantHoverCard participant={p}>
+                          <button className="text-left font-medium text-neutral-900 hover:text-blue-600 transition-colors focus:outline-none focus:underline cursor-pointer">
+                            {p.name}
+                          </button>
+                        </ParticipantHoverCard>
+                      </td>
                       <td className="px-4 py-2">{p.age}</td>
                       <td className="px-4 py-2">{p.gender}</td>
                       <td className="px-4 py-2">{p.team}</td>

@@ -74,6 +74,15 @@ export function Sidebar() {
         >
           Gallery
         </Link>
+        <Link 
+          href="/voting" 
+          className={cn(
+            "px-3 py-2 rounded-md hover:bg-neutral-100 transition",
+            pathname === "/voting" && "bg-neutral-100 font-medium"
+          )}
+        >
+          Fan Voting
+        </Link>
         {user?.role === "user" && (
           <Link 
             href="/fixtures" 
