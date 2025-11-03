@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users, Trophy, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Calendar, MapPin, Users, Trophy, ArrowRight, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { getAllTournaments } from "@/lib/api/tournaments";
 import { Tournament } from "@/types/tournaments";
 import { useAuth } from "@/lib/auth-context";
 import { useTranslation } from "react-i18next";
+import { CompleteTournamentDialog } from "@/components/tournaments/CompleteTournamentDialog";
+import { Toaster } from "@/components/ui/sonner";
 
 const getStatusColor = (status: string) => {
   switch (status) {
@@ -26,6 +29,9 @@ export default function DashboardPage() {
   const { user } = useAuth();
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [loading, setLoading] = useState(true);
+  const [completeDialogOpen, setCompleteDialogOpen] = useState(false);
+  const [selectedTournamentId, setSelectedTournamentId] = useState<string | null>(null);
+  const [selectedTournamentName, setSelectedTournamentName] = useState("");
   
   const isEventHoster = user?.role === "event-hoster";
 
@@ -76,6 +82,20 @@ export default function DashboardPage() {
     }
   };
 
+  const handleCompleteTournament = (tournamentId: string, tournamentName: string) => {
+    setSelectedTournamentId(tournamentId);
+    setSelectedTournamentName(tournamentName);
+    setCompleteDialogOpen(true);
+  };
+
+  const handleTournamentCompleted = () => {
+    // Refresh tournament list after completion
+    loadTournaments();
+    setCompleteDialogOpen(false);
+    setSelectedTournamentId(null);
+    setSelectedTournamentName("");
+  };
+
   if (loading) {
     return (
       <div className="space-y-6">
@@ -117,8 +137,10 @@ export default function DashboardPage() {
         </Card>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tournaments.map((tournament) => (
-            <Link key={tournament.id} href={`/tournaments/${tournament.id}`} className="block group">
+          {tournaments.map((tournament) => {
+            const canComplete = isEventHoster && (tournament.status === 'ONGOING' || tournament.status === 'UPCOMING');
+            
+            const cardContent = (
               <motion.div 
                 whileHover={{ y: -2, scale: 1.02 }} 
                 whileTap={{ scale: 0.99 }} 
@@ -153,17 +175,56 @@ export default function DashboardPage() {
                       <Users className="h-4 w-4 mr-2" />
                       {tournament.currentParticipants}/{tournament.maxParticipants} {t('dashboard.participants')}
                     </div>
-                    <div className="pt-2 flex items-center text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
-                      {t('dashboard.viewDetails')}
-                      <ArrowRight className="h-4 w-4 ml-1" />
-                    </div>
+                    
+                    {canComplete ? (
+                      <div className="pt-2 flex flex-col gap-2">
+                        <Button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleCompleteTournament(tournament.id.toString(), tournament.name);
+                          }}
+                          variant="default"
+                          size="sm"
+                          className="w-full"
+                        >
+                          <CheckCircle className="h-4 w-4 mr-2" />
+                          {t('dashboard.completeTournament')}
+                        </Button>
+                        <div className="flex items-center text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
+                          {t('dashboard.viewDetails')}
+                          <ArrowRight className="h-4 w-4 ml-1" />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="pt-2 flex items-center text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
+                        {t('dashboard.viewDetails')}
+                        <ArrowRight className="h-4 w-4 ml-1" />
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </motion.div>
-            </Link>
-          ))}
+            );
+            
+            return (
+              <Link key={tournament.id} href={`/tournaments/${tournament.id}`} className="block group">
+                {cardContent}
+              </Link>
+            );
+          })}
         </div>
       )}
+      
+      <CompleteTournamentDialog
+        open={completeDialogOpen}
+        onClose={() => setCompleteDialogOpen(false)}
+        tournamentId={selectedTournamentId || ""}
+        tournamentName={selectedTournamentName}
+        onSuccess={handleTournamentCompleted}
+      />
+      
+      <Toaster />
     </div>
   );
 }
