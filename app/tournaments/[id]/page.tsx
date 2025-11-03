@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowLeft, Calendar, MapPin, Users, Trophy } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, Users, Trophy, BarChart3 } from 'lucide-react';
 import ParticipantsModule from '@/components/participants/ParticipantsModule';
 import TimelineView from '@/components/participants/TimelineView';
 import FixtureGenerator from '@/components/participants/FixtureGenerator';
@@ -119,6 +119,10 @@ export default function TournamentDetailPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
             Create Form
+          </Button>
+          <Button onClick={() => router.push(`/tournaments/${tournament.id}/analytics`)} variant="outline">
+            <BarChart3 className="mr-2 h-4 w-4" />
+            Match Analytics
           </Button>
           <Button onClick={() => {
             const link = `${window.location.origin}/tournaments/${tournament.id}/register`;
