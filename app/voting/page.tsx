@@ -11,6 +11,8 @@ import { VotingResults } from "@/components/voting/VotingResults";
 import { Users, Trophy, XCircle } from "lucide-react";
 import { initializeMockVotingData, getVoterIdentifier } from "@/lib/voting/utils";
 import type { EligiblePlayer, PlayerVoteCount, VoteStatus } from "@/lib/voting/types";
+import { useAuth } from "@/lib/auth-context";
+import { useRouter } from "next/navigation";
 
 // Mock players for the match
 const mockPlayers: EligiblePlayer[] = [
@@ -23,6 +25,8 @@ const mockPlayers: EligiblePlayer[] = [
 ];
 
 export default function MatchVotingPage() {
+  const { user } = useAuth();
+  const router = useRouter();
   const [matchId] = useState("match-1");
   const [voteCounts, setVoteCounts] = useState<PlayerVoteCount[]>([]);
   const [totalVotes, setTotalVotes] = useState(0);
@@ -32,6 +36,13 @@ export default function MatchVotingPage() {
   const [votedPlayerId, setVotedPlayerId] = useState<string | null>(null);
   const [isVoting, setIsVoting] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+
+  // Redirect event hosters away from voting page
+  useEffect(() => {
+    if (user?.role === "event-hoster") {
+      router.push("/dashboard");
+    }
+  }, [user, router]);
 
   // Initialize mock data on component mount
   useEffect(() => {

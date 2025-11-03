@@ -33,8 +33,6 @@ export function Sidebar() {
 
   return (
     <aside className="w-56 h-screen sticky top-0 border-r border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-neutral-950/60 flex flex-col p-4 gap-2 overflow-y-auto">
-      <div className="mb-4 mt-2 font-bold text-lg tracking-tight">Y-Ultimate</div>
-    <aside className="w-56 h-screen sticky top-0 border-r border-neutral-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 flex flex-col p-4 gap-2 overflow-y-auto">
       <div className="mb-4 mt-2 font-bold text-lg tracking-tight">{t('sidebar.appName')}</div>
       
       {user?.role === "event-hoster" && (
@@ -78,15 +76,17 @@ export function Sidebar() {
         >
           {t('sidebar.gallery')}
         </Link>
-        <Link 
-          href="/voting" 
-          className={cn(
-            "px-3 py-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 transition",
-            pathname === "/voting" && "bg-neutral-100 dark:bg-neutral-800 font-medium"
-          )}
-        >
-          Fan Voting
-        </Link>
+        {user?.role !== "event-hoster" && (
+          <Link 
+            href="/voting" 
+            className={cn(
+              "px-3 py-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 transition",
+              pathname === "/voting" && "bg-neutral-100 dark:bg-neutral-800 font-medium"
+            )}
+          >
+            Fan Voting
+          </Link>
+        )}
         {user?.role === "user" && (
           <Link 
             href="/fixtures" 
