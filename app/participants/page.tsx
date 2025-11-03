@@ -30,8 +30,8 @@ function ParticipantsContent() {
       className={
         `px-3 py-2 text-sm rounded-none border-b-2 transition-colors ` +
         (activeTab === id
-          ? "border-neutral-900 text-neutral-900 font-semibold"
-          : "border-transparent text-neutral-500 hover:text-neutral-900")
+          ? "border-neutral-900 dark:border-neutral-100 text-neutral-900 dark:text-neutral-100 font-semibold"
+          : "border-transparent text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100")
       }
     >
       {label}
@@ -40,7 +40,7 @@ function ParticipantsContent() {
 
   return (
     <div className="space-y-4">
-      <div className="flex gap-4 border-b border-neutral-200">
+      <div className="flex gap-4 border-b border-neutral-200 dark:border-neutral-800">
         <TabButton id="participants" label="Participants" />
         <TabButton id="timeline" label="Timeline" />
         <TabButton id="fixtures" label="Fixtures" />

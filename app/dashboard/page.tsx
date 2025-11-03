@@ -13,11 +13,11 @@ import { useTranslation } from "react-i18next";
 
 const getStatusColor = (status: string) => {
   switch (status) {
-    case 'UPCOMING': return 'bg-blue-100 text-blue-800';
-    case 'ONGOING': return 'bg-green-100 text-green-800';
-    case 'COMPLETED': return 'bg-gray-100 text-gray-800';
-    case 'CANCELLED': return 'bg-red-100 text-red-800';
-    default: return 'bg-yellow-100 text-yellow-800';
+    case 'UPCOMING': return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300';
+    case 'ONGOING': return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300';
+    case 'COMPLETED': return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300';
+    case 'CANCELLED': return 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300';
+    default: return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300';
   }
 };
 
@@ -104,9 +104,9 @@ export default function DashboardPage() {
       {tournaments.length === 0 ? (
         <Card className="border-dashed">
           <CardContent className="flex flex-col items-center justify-center py-16">
-            <Trophy className="h-16 w-16 text-neutral-400 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">{t('dashboard.noTournamentsTitle')}</h3>
-            <p className="text-neutral-600 mb-6">{t('dashboard.noTournamentsDesc')}</p>
+            <Trophy className="h-16 w-16 text-neutral-400 dark:text-neutral-600 mb-4" />
+            <h3 className="text-xl font-semibold mb-2">No Tournaments Yet</h3>
+            <p className="text-neutral-600 dark:text-neutral-400 mb-6">Create your first tournament to get started</p>
             <Link 
               href="/tournaments/create"
               className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
@@ -124,8 +124,8 @@ export default function DashboardPage() {
                 whileTap={{ scale: 0.99 }} 
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <Card className="rounded-2xl h-full border-neutral-200/70 overflow-hidden transition-all duration-200 group-hover:shadow-lg">
-                  <CardHeader className="bg-gradient-to-br from-white to-neutral-50 group-hover:from-neutral-50 group-hover:to-white">
+                <Card className="rounded-2xl h-full border-neutral-200/70 dark:border-neutral-800 overflow-hidden transition-all duration-200 group-hover:shadow-lg dark:group-hover:shadow-neutral-900/50">
+                  <CardHeader className="bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-900 dark:to-neutral-800/50 group-hover:from-neutral-50 group-hover:to-white dark:group-hover:from-neutral-800/50 dark:group-hover:to-neutral-900">
                     <div className="flex items-start justify-between mb-2">
                       <CardTitle className="text-lg line-clamp-1">{tournament.name}</CardTitle>
                       <Badge className={getStatusColor(tournament.status)} variant="secondary">
@@ -137,19 +137,19 @@ export default function DashboardPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="pt-4 space-y-3">
-                    <div className="flex items-center text-sm text-neutral-600">
+                    <div className="flex items-center text-sm text-neutral-600 dark:text-neutral-400">
                       <Trophy className="h-4 w-4 mr-2" />
                       {getTypeLabel(tournament.type)}
                     </div>
-                    <div className="flex items-center text-sm text-neutral-600">
+                    <div className="flex items-center text-sm text-neutral-600 dark:text-neutral-400">
                       <Calendar className="h-4 w-4 mr-2" />
                       {new Date(tournament.startDate).toLocaleDateString()} - {new Date(tournament.endDate).toLocaleDateString()}
                     </div>
-                    <div className="flex items-center text-sm text-neutral-600">
+                    <div className="flex items-center text-sm text-neutral-600 dark:text-neutral-400">
                       <MapPin className="h-4 w-4 mr-2" />
                       {tournament.location}
                     </div>
-                    <div className="flex items-center text-sm text-neutral-600">
+                    <div className="flex items-center text-sm text-neutral-600 dark:text-neutral-400">
                       <Users className="h-4 w-4 mr-2" />
                       {tournament.currentParticipants}/{tournament.maxParticipants} {t('dashboard.participants')}
                     </div>

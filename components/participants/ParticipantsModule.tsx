@@ -9,6 +9,7 @@ import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from "@/components/u
 import { Input } from "@/components/ui/input";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { ParticipantHoverCard } from "./ParticipantHoverCard";
 
 // Helper function to send notifications via API
 async function sendNotification(action: string, data: Record<string, any>) {
@@ -538,7 +539,7 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
       </div>
       <Card className="p-3">
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white">
+          <table className="min-w-full bg-white dark:bg-neutral-900">
             <thead>
               <tr>
                 <th className="px-4 py-2 text-left">Name</th>
@@ -554,14 +555,20 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
             <tbody>
               {Array.from(participantsByTeam.entries()).map(([team, teamParticipants]) => (
                 <>
-                  <tr key={`team-${team}`} className="bg-neutral-50">
-                    <td colSpan={8} className="px-4 py-3 font-semibold text-neutral-700 border-t-2">
+                  <tr key={`team-${team}`} className="bg-neutral-50 dark:bg-neutral-800/50">
+                    <td colSpan={8} className="px-4 py-3 font-semibold text-neutral-700 dark:text-neutral-300 border-t-2 dark:border-neutral-700">
                       {team} ({teamParticipants.length} {teamParticipants.length === 1 ? 'participant' : 'participants'})
                     </td>
                   </tr>
                   {teamParticipants.map((p) => (
-                    <tr key={p.id} className="border-b hover:bg-neutral-50">
-                      <td className="px-4 py-2">{p.name}</td>
+                    <tr key={p.id} className="border-b dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800/50">
+                      <td className="px-4 py-2">
+                        <ParticipantHoverCard participant={p}>
+                          <button className="text-left font-medium text-neutral-900 dark:text-neutral-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus:outline-none focus:underline cursor-pointer">
+                            {p.name}
+                          </button>
+                        </ParticipantHoverCard>
+                      </td>
                       <td className="px-4 py-2">{p.age}</td>
                       <td className="px-4 py-2">{p.gender}</td>
                       <td className="px-4 py-2">{p.team}</td>
@@ -613,19 +620,19 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
           <div className="px-4 pt-2 pb-3 overflow-y-auto flex-1">
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium">
+                <label htmlFor="name" className="block text-sm font-medium dark:text-neutral-200">
                   Name
                 </label>
                 <Input id="name" name="name" value={form.name} onChange={handleInput} className={errors.name ? "border-red-500 focus:border-red-500" : ""} required />
               </div>
               <div>
-                <label htmlFor="age" className="block text-sm font-medium">
+                <label htmlFor="age" className="block text-sm font-medium dark:text-neutral-200">
                   Age
                 </label>
                 <Input id="age" name="age" type="number" min={1} value={form.age || ""} onChange={handleInput} className={errors.age ? "border-red-500 focus:border-red-500" : ""} required />
               </div>
               <div>
-                <span className="block text-sm font-medium">Gender</span>
+                <span className="block text-sm font-medium dark:text-neutral-200">Gender</span>
                 <div className="flex gap-2 mt-1">
                   {(["Male", "Female", "Other"] as const).map((g) => (
                     <button
@@ -634,7 +641,7 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
                       onClick={() => setForm((f) => ({ ...f, gender: g }))}
                       className={
                         `px-3 py-1.5 rounded-full text-sm border transition ` +
-                        (form.gender === g ? "bg-neutral-900 text-white border-neutral-900" : "bg-white text-neutral-700 border-neutral-300 hover:bg-neutral-100")
+                        (form.gender === g ? "bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 border-neutral-900 dark:border-neutral-100" : "bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700")
                       }
                     >
                       {g}
@@ -643,7 +650,7 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
                 </div>
               </div>
               <div>
-                <span className="block text-sm font-medium">Role</span>
+                <span className="block text-sm font-medium dark:text-neutral-200">Role</span>
                 <div className="flex gap-2 mt-1">
                   {(["Player", "Coach", "Volunteer"] as const).map((r) => (
                     <button
@@ -652,7 +659,7 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
                       onClick={() => setForm((f) => ({ ...f, role: r }))}
                       className={
                         `px-3 py-1.5 rounded-full text-sm border transition ` +
-                        (form.role === r ? "bg-neutral-900 text-white border-neutral-900" : "bg-white text-neutral-700 border-neutral-300 hover:bg-neutral-100")
+                        (form.role === r ? "bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 border-neutral-900 dark:border-neutral-100" : "bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700")
                       }
                     >
                       {r}
@@ -661,20 +668,20 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
                 </div>
               </div>
               <div>
-                <label htmlFor="team" className="block text-sm font-medium">
+                <label htmlFor="team" className="block text-sm font-medium dark:text-neutral-200">
                   Team
                 </label>
-                <Input id="team" name="team" value={form.team} onChange={handleInput} className={errors.team ? "border-red-500 focus:border-red-500" : ""} required />
+                <Input id="team" name="team" value={form.team} onChange={handleInput} className={errors.name ? "border-red-500 focus:border-red-500" : ""} required />
               </div>
               <div>
-                <label htmlFor="contact" className="block text-sm font-medium">
+                <label htmlFor="contact" className="block text-sm font-medium dark:text-neutral-200">
                   Email
                 </label>
                 <Input id="contact" name="contact" type="email" value={form.contact} onChange={handleInput} className={errors.contact ? "border-red-500 focus:border-red-500" : ""} required />
               </div>
               {/* Status field removed for Add form (defaults to Pending) */}
               <div className="h-2" />
-              <div className="flex gap-2 sticky bottom-0 bg-white pt-2 pb-1">
+              <div className="flex gap-2 sticky bottom-0 bg-white dark:bg-neutral-900 pt-2 pb-1">
                 <Button type="submit">Add</Button>
                 <Button variant="outline" type="button" onClick={() => handleOpenChange(false)}>
                   Cancel
@@ -694,27 +701,27 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
           <div className="px-4 pt-2 pb-3 overflow-y-auto flex-1">
             <form className="space-y-4" onSubmit={submitTeam}>
               <div>
-                <label htmlFor="team-name" className="block text-sm font-medium">Team Name</label>
+                <label htmlFor="team-name" className="block text-sm font-medium dark:text-neutral-200">Team Name</label>
                 <Input id="team-name" value={teamName} onChange={(e) => setTeamName(e.target.value)} required className="mt-1" />
               </div>
               <div>
-                <label htmlFor="team-count" className="block text-sm font-medium">Number of Members</label>
+                <label htmlFor="team-count" className="block text-sm font-medium dark:text-neutral-200">Number of Members</label>
                 <Input id="team-count" type="number" min={0} value={teamMembersCount} onChange={(e) => handleTeamCountChange(e.target.value)} className="mt-1" />
               </div>
               {teamMembers.map((m, idx) => (
-                <div key={idx} className="border rounded-lg p-4">
+                <div key={idx} className="border dark:border-neutral-700 rounded-lg p-4">
                   <div className="font-medium mb-3">Member {idx + 1}</div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium">Name</label>
+                      <label className="block text-sm font-medium dark:text-neutral-200">Name</label>
                       <Input value={m.name} onChange={(e) => updateTeamMember(idx, { name: e.target.value })} />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium">Age</label>
+                      <label className="block text-sm font-medium dark:text-neutral-200">Age</label>
                       <Input type="number" min={1} value={m.age} onChange={(e) => updateTeamMember(idx, { age: Number(e.target.value) })} />
                     </div>
                     <div>
-                      <span className="block text-sm font-medium">Gender</span>
+                      <span className="block text-sm font-medium dark:text-neutral-200">Gender</span>
                       <div className="flex gap-2 mt-1">
                         {(["Male", "Female", "Other"] as const).map((g) => (
                           <button
@@ -723,7 +730,7 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
                             onClick={() => updateTeamMember(idx, { gender: g })}
                             className={
                               `px-3 py-1.5 rounded-full text-sm border transition ` +
-                              (m.gender === g ? "bg-neutral-900 text-white border-neutral-900" : "bg-white text-neutral-700 border-neutral-300 hover:bg-neutral-100")
+                              (m.gender === g ? "bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 border-neutral-900 dark:border-neutral-100" : "bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700")
                             }
                           >
                             {g}
@@ -732,7 +739,7 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
                       </div>
                     </div>
                     <div>
-                      <span className="block text-sm font-medium">Role</span>
+                      <span className="block text-sm font-medium dark:text-neutral-200">Role</span>
                       <div className="flex gap-2 mt-1">
                         {(["Player", "Coach", "Volunteer"] as const).map((r) => (
                           <button
@@ -741,7 +748,7 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
                             onClick={() => updateTeamMember(idx, { role: r })}
                             className={
                               `px-3 py-1.5 rounded-full text-sm border transition ` +
-                              (m.role === r ? "bg-neutral-900 text-white border-neutral-900" : "bg-white text-neutral-700 border-neutral-300 hover:bg-neutral-100")
+                              (m.role === r ? "bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 border-neutral-900 dark:border-neutral-100" : "bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700")
                             }
                           >
                             {r}
@@ -750,14 +757,14 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
                       </div>
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="block text-sm font-medium">Email</label>
+                      <label className="block text-sm font-medium dark:text-neutral-200">Email</label>
                       <Input type="email" value={m.contact} onChange={(e) => updateTeamMember(idx, { contact: e.target.value })} />
                     </div>
                   </div>
                 </div>
               ))}
               <div className="h-2" />
-              <div className="flex gap-2 sticky bottom-0 bg-white pt-2 pb-1 justify-end">
+              <div className="flex gap-2 sticky bottom-0 bg-white dark:bg-neutral-900 pt-2 pb-1 justify-end">
                 <Button type="button" variant="outline" onClick={() => handleTeamOpenChange(false)}>Cancel</Button>
                 <Button type="submit">Add Team</Button>
               </div>
@@ -793,19 +800,19 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
           </DialogHeader>
           <form className="space-y-4" onSubmit={submitEdit}>
             <div>
-              <label htmlFor="edit-name" className="block text-sm font-medium">
+              <label htmlFor="edit-name" className="block text-sm font-medium dark:text-neutral-200">
                 Name
               </label>
               <Input id="edit-name" name="name" value={editForm.name} onChange={handleEditInput} className={editErrors.name ? "border-red-500 focus:border-red-500" : ""} required />
             </div>
             <div>
-              <label htmlFor="edit-age" className="block text-sm font-medium">
+              <label htmlFor="edit-age" className="block text-sm font-medium dark:text-neutral-200">
                 Age
               </label>
               <Input id="edit-age" name="age" type="number" min={1} value={editForm.age || ""} onChange={handleEditInput} className={editErrors.age ? "border-red-500 focus:border-red-500" : ""} required />
             </div>
             <div>
-              <span className="block text-sm font-medium">Gender</span>
+              <span className="block text-sm font-medium dark:text-neutral-200">Gender</span>
               <div className="flex gap-2 mt-1">
                 {(["Male", "Female", "Other"] as const).map((g) => (
                   <button
@@ -814,7 +821,7 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
                     onClick={() => setEditForm((f) => ({ ...f, gender: g }))}
                     className={
                       `px-3 py-1.5 rounded-full text-sm border transition ` +
-                      (editForm.gender === g ? "bg-neutral-900 text-white border-neutral-900" : "bg-white text-neutral-700 border-neutral-300 hover:bg-neutral-100")
+                      (editForm.gender === g ? "bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 border-neutral-900 dark:border-neutral-100" : "bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700")
                     }
                   >
                     {g}
@@ -823,7 +830,7 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
               </div>
             </div>
             <div>
-              <span className="block text-sm font-medium">Role</span>
+              <span className="block text-sm font-medium dark:text-neutral-200">Role</span>
               <div className="flex gap-2 mt-1">
                 {(["Player", "Coach", "Volunteer"] as const).map((r) => (
                   <button
@@ -832,7 +839,7 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
                     onClick={() => setEditForm((f) => ({ ...f, role: r }))}
                     className={
                       `px-3 py-1.5 rounded-full text-sm border transition ` +
-                      (editForm.role === r ? "bg-neutral-900 text-white border-neutral-900" : "bg-white text-neutral-700 border-neutral-300 hover:bg-neutral-100")
+                      (editForm.role === r ? "bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 border-neutral-900 dark:border-neutral-100" : "bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700")
                     }
                   >
                     {r}
@@ -841,19 +848,19 @@ export default function ParticipantsModule({ onParticipantsChange }: Participant
               </div>
             </div>
             <div>
-              <label htmlFor="edit-team" className="block text-sm font-medium">
+              <label htmlFor="edit-team" className="block text-sm font-medium dark:text-neutral-200">
                 Team
               </label>
               <Input id="edit-team" name="team" value={editForm.team} onChange={handleEditInput} className={editErrors.team ? "border-red-500 focus:border-red-500" : ""} required />
             </div>
             <div>
-              <label htmlFor="edit-contact" className="block text-sm font-medium">
+              <label htmlFor="edit-contact" className="block text-sm font-medium dark:text-neutral-200">
                 Email
               </label>
               <Input id="edit-contact" name="contact" type="email" value={editForm.contact} onChange={handleEditInput} className={editErrors.contact ? "border-red-500 focus:border-red-500" : ""} required />
             </div>
             <div>
-              <label htmlFor="edit-status" className="block text-sm font-medium">
+              <label htmlFor="edit-status" className="block text-sm font-medium dark:text-neutral-200">
                 Status
               </label>
               <select id="edit-status" name="status" value={editForm.status} onChange={(e) => setEditForm((f) => ({ ...f, status: e.target.value }))} className="mt-1 border rounded px-2 py-2 text-sm h-9 w-full" required>

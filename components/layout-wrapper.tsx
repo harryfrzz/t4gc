@@ -8,11 +8,11 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const isAuthPage = pathname.startsWith("/auth");
 
   if (isAuthPage) {
-    return <div className="bg-gradient-to-br from-neutral-50 to-white min-h-screen">{children}</div>;
+    return <div className="bg-gradient-to-br from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900 min-h-screen">{children}</div>;
   }
 
   return (
-    <div className="bg-gradient-to-br from-neutral-50 to-white min-h-screen flex">
+    <div className="bg-gradient-to-br from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900 min-h-screen flex">
       <Sidebar />
       <main className="flex-1 px-6 py-8">{children}</main>
     </div>

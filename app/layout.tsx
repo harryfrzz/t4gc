@@ -3,6 +3,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "../lib/auth-context";
+import { ThemeProvider } from "../lib/theme-context";
+import { LayoutWrapper } from "@/components/layout-wrapper";
+import { ThemeScript } from "@/components/theme-script";
 import { LanguageProvider } from "@/lib/language-context";
 import { LayoutWrapper } from "@/components/layout-wrapper";
 import { Toaster } from "sonner";
@@ -19,8 +22,16 @@ const geistMono = Geist_Mono({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ThemeProvider>
+          <AuthProvider>
+            <LayoutWrapper>{children}</LayoutWrapper>
+          </AuthProvider>
+        </ThemeProvider>
         <LanguageProvider>
           <AuthProvider>
             <LayoutWrapper>{children}</LayoutWrapper>
