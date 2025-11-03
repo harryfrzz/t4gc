@@ -1,12 +1,50 @@
 /**
  * Email Notification Channel
  * Handles all email sending logic using Resend (with fallback support)
+ * 
+ * ====================================
+ * 🔧 SETUP INSTRUCTIONS
+ * ====================================
+ * 
+ * To enable email notifications, you need to:
+ * 
+ * 1. Get a Resend API Key:
+ *    - Sign up at https://resend.com
+ *    - Go to https://resend.com/api-keys
+ *    - Create an API key and copy it
+ * 
+ * 2. Add the API key to your .env.local file:
+ *    RESEND_API_KEY=re_your_actual_api_key_here
+ * 
+ * 3. Configure the sender email address:
+ *    
+ *    FOR TESTING (Resend free tier):
+ *    - Use the default "onboarding@resend.dev" (already set below)
+ *    - Emails can ONLY be sent to YOUR verified email address
+ *    - To test: temporarily change recipient to your email in the code
+ *    
+ *    FOR PRODUCTION (send to any email):
+ *    - Verify your domain at https://resend.com/domains
+ *    - Add DNS records (SPF, DKIM) to your domain
+ *    - Set EMAIL_FROM in .env.local:
+ *      EMAIL_FROM=noreply@yourdomain.com
+ *    - Now you can send to any recipient
+ * 
+ * 4. Optional: For testing with free tier, you can modify line ~96 below:
+ *    Change: to: recipient,
+ *    To:     to: "your-verified-email@gmail.com",  // Testing only
+ *    
+ *    This sends all emails to your verified address during development.
+ *    Remember to change it back before production!
+ * 
+ * ====================================
  */
 
 import { NotificationPayload, NotificationResult, EmailNotificationData } from "../types";
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY || process.env.NEXT_PUBLIC_RESEND_API_KEY;
-const EMAIL_FROM = process.env.EMAIL_FROM || process.env.NEXT_PUBLIC_EMAIL_FROM || "noreply@yultimate.com";
+// Use Resend's onboarding sender as a safe default for testing if none provided
+const EMAIL_FROM = process.env.EMAIL_FROM || process.env.NEXT_PUBLIC_EMAIL_FROM || "onboarding@resend.dev";
 const EMAIL_SERVICE = process.env.EMAIL_SERVICE || "resend";
 
 /**
@@ -41,9 +79,21 @@ export async function sendEmailViaResend(
     const result = await response.json();
 
     if (!response.ok) {
+      // Try to provide a more actionable error message
+      const detailed =
+        (result && (result.error?.message || result.message || result.detail)) ||
+        `HTTP ${response.status}: ${response.statusText}`;
+
+      let hint = "";
+      if (response.status === 401 || response.status === 403) {
+        hint = " (invalid or missing RESEND_API_KEY)";
+      } else if (response.status === 422) {
+        hint = " (unverified or invalid 'from' address)";
+      }
+
       return {
         success: false,
-        error: result.message || `Resend API error: ${response.statusText}`,
+        error: `Resend API error: ${detailed}${hint}`,
       };
     }
 
@@ -84,7 +134,7 @@ export async function sendEmailNotification(
   let emailResult;
   if (EMAIL_SERVICE === "resend") {
     emailResult = await sendEmailViaResend({
-      to: recipient,
+      to: recipient, // 🔧 TESTING: Change to your verified email if using Resend free tier
       subject: emailContent.subject,
       html: emailContent.html,
       text: emailContent.text,
@@ -285,4 +335,5 @@ Best regards,
 The Y-Ultimate Team
   `.trim();
 }
+
 
