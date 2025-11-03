@@ -1,0 +1,100 @@
+{
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "create": "बनाएं",
+    "view": "देखें",
+    "back": "वापस",
+    "next": "अगला",
+    "previous": "पिछला",
+    "search": "खोजें",
+    "filter": "फ़िल्टर",
+    "export": "निर्यात करें",
+    "import": "आयात करें"
+  },
+  "sidebar": {
+    "appName": "Y-Ultimate",
+    "newTournament": "नया टूर्नामेंट",
+    "tournaments": "टूर्नामेंट",
+    "sponsorships": "प्रायोजन",
+    "gallery": "गैलरी",
+    "myFixtures": "मेरे मैच",
+    "pastTournaments": "पिछले टूर्नामेंट",
+    "myAccount": "मेरा खाता",
+    "manageProfile": "प्रोफ़ाइल प्रबंधित करें",
+    "settings": "सेटिंग्स",
+    "logout": "लॉग आउट"
+  },
+  "dashboard": {
+    "title": "टूर्नामेंट",
+    "loading": "टूर्नामेंट लोड हो रहे हैं...",
+    "tournamentsAvailable": "{{count}} टूर्नामेंट उपलब्ध",
+    "tournamentsAvailable_other": "{{count}} टूर्नामेंट उपलब्ध",
+    "noTournaments": "अभी तक कोई टूर्नामेंट नहीं बनाया गया",
+    "noTournamentsTitle": "अभी तक कोई टूर्नामेंट नहीं",
+    "noTournamentsDesc": "शुरू करने के लिए अपना पहला टूर्नामेंट बनाएं",
+    "createTournament": "टूर्नामेंट बनाएं",
+    "participants": "प्रतिभागी",
+    "viewDetails": "विवरण देखें",
+    "status": {
+      "upcoming": "आगामी",
+      "ongoing": "चल रहा है",
+      "completed": "पूर्ण",
+      "cancelled": "रद्द"
+    },
+    "type": {
+      "singleElimination": "सिंगल एलिमिनेशन",
+      "doubleElimination": "डबल एलिमिनेशन",
+      "roundRobin": "राउंड रॉबिन",
+      "swiss": "स्विस",
+      "league": "लीग"
+    }
+  },
+  "settings": {
+    "title": "सेटिंग्स",
+    "description": "अपने खाते की प्राथमिकताएं और सुरक्षा सेटिंग्स प्रबंधित करें।",
+    "notifications": {
+      "title": "सूचनाएं",
+      "description": "अपडेट प्राप्त करने का तरीका कॉन्फ़िगर करें",
+      "email": "ईमेल सूचनाएं",
+      "emailDesc": "अपने खाते के बारे में ईमेल अपडेट प्राप्त करें",
+      "push": "पुश सूचनाएं",
+      "pushDesc": "अपने डिवाइस पर पुश सूचनाएं प्राप्त करें",
+      "tournament": "टूर्नामेंट अपडेट",
+      "tournamentDesc": "टूर्नामेंट परिवर्तनों के बारे में सूचित हों"
+    },
+    "appearance": {
+      "title": "दिखावट",
+      "description": "ऐप की दिखावट को अनुकूलित करें",
+      "darkMode": "डार्क मोड",
+      "darkModeDesc": "डार्क थीम पर स्विच करें",
+      "language": "भाषा",
+      "languageDesc": "अपनी पसंदीदा भाषा चुनें",
+      "selectLanguage": "भाषा चुनें"
+    },
+    "security": {
+      "title": "सुरक्षा और गोपनीयता",
+      "description": "अपनी सुरक्षा प्राथमिकताएं प्रबंधित करें",
+      "twoFactor": "दो-कारक प्रमाणीकरण",
+      "twoFactorDesc": "सुरक्षा की एक अतिरिक्त परत जोड़ें",
+      "publicProfile": "सार्वजनिक प्रोफ़ाइल",
+      "publicProfileDesc": "अपनी प्रोफ़ाइल को दूसरों के लिए दृश्यमान बनाएं",
+      "changePassword": "पासवर्ड बदलें"
+    },
+    "danger": {
+      "title": "खतरा क्षेत्र",
+      "description": "अपरिवर्तनीय क्रियाएं",
+      "deleteAccount": "खाता हटाएं",
+      "deleteAccountDesc": "अपने खाते और सभी डेटा को स्थायी रूप से हटा दें",
+      "deleteButton": "खाता हटाएं"
+    },
+    "cancel": "रद्द करें",
+    "save": "परिवर्तन सहेजें",
+    "saving": "परिवर्तन सहेजे जा रहे हैं...",
+    "saved": "परिवर्तन सफलतापूर्वक सहेजे गए! ✓",
+    "error": "परिवर्तन सहेजने में विफल"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "create": "Criar",
+    "view": "Visualizar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "search": "Pesquisar",
+    "filter": "Filtrar",
+    "export": "Exportar",
+    "import": "Importar"
+  },
+  "sidebar": {
+    "appName": "Y-Ultimate",
+    "newTournament": "Novo Torneio",
+    "tournaments": "Torneios",
+    "sponsorships": "Patrocínios",
+    "gallery": "Galeria",
+    "myFixtures": "Meus Jogos",
+    "pastTournaments": "Torneios Anteriores",
+    "myAccount": "Minha Conta",
+    "manageProfile": "Gerenciar Perfil",
+    "settings": "Configurações",
+    "logout": "Sair"
+  },
+  "dashboard": {
+    "title": "Torneios",
+    "loading": "Carregando torneios...",
+    "tournamentsAvailable": "{{count}} torneio disponível",
+    "tournamentsAvailable_other": "{{count}} torneios disponíveis",
+    "noTournaments": "Nenhum torneio criado ainda",
+    "noTournamentsTitle": "Ainda Não Há Torneios",
+    "noTournamentsDesc": "Crie seu primeiro torneio para começar",
+    "createTournament": "Criar Torneio",
+    "participants": "participantes",
+    "viewDetails": "Ver Detalhes",
+    "status": {
+      "upcoming": "Próximo",
+      "ongoing": "Em Andamento",
+      "completed": "Concluído",
+      "cancelled": "Cancelado"
+    },
+    "type": {
+      "singleElimination": "Eliminação Simples",
+      "doubleElimination": "Eliminação Dupla",
+      "roundRobin": "Round Robin",
+      "swiss": "Suíço",
+      "league": "Liga"
+    }
+  },
+  "settings": {
+    "title": "Configurações",
+    "description": "Gerencie as preferências da sua conta e configurações de segurança.",
+    "notifications": {
+      "title": "Notificações",
+      "description": "Configure como você recebe atualizações",
+      "email": "Notificações por e-mail",
+      "emailDesc": "Receba atualizações por e-mail sobre sua conta",
+      "push": "Notificações push",
+      "pushDesc": "Receba notificações push no seu dispositivo",
+      "tournament": "Atualizações de torneios",
+      "tournamentDesc": "Seja notificado sobre mudanças em torneios"
+    },
+    "appearance": {
+      "title": "Aparência",
+      "description": "Personalize como o app fica",
+      "darkMode": "Modo escuro",
+      "darkModeDesc": "Mudar para tema escuro",
+      "language": "Idioma",
+      "languageDesc": "Selecione seu idioma preferido",
+      "selectLanguage": "Selecionar idioma"
+    },
+    "security": {
+      "title": "Segurança e Privacidade",
+      "description": "Gerencie suas preferências de segurança",
+      "twoFactor": "Autenticação de dois fatores",
+      "twoFactorDesc": "Adicione uma camada extra de segurança",
+      "publicProfile": "Perfil público",
+      "publicProfileDesc": "Torne seu perfil visível para outros",
+      "changePassword": "Alterar senha"
+    },
+    "danger": {
+      "title": "Zona de perigo",
+      "description": "Ações irreversíveis",
+      "deleteAccount": "Excluir conta",
+      "deleteAccountDesc": "Exclua permanentemente sua conta e todos os dados",
+      "deleteButton": "Excluir conta"
+    },
+    "cancel": "Cancelar",
+    "save": "Salvar alterações",
+    "saving": "Salvando alterações...",
+    "saved": "Alterações salvas com sucesso! ✓",
+    "error": "Falha ao salvar alterações"
+  }
+}

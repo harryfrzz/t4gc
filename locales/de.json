@@ -1,0 +1,100 @@
+{
+  "common": {
+    "loading": "Wird geladen...",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "create": "Erstellen",
+    "view": "Ansehen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "search": "Suchen",
+    "filter": "Filtern",
+    "export": "Exportieren",
+    "import": "Importieren"
+  },
+  "sidebar": {
+    "appName": "Y-Ultimate",
+    "newTournament": "Neues Turnier",
+    "tournaments": "Turniere",
+    "sponsorships": "Sponsorings",
+    "gallery": "Galerie",
+    "myFixtures": "Meine Spiele",
+    "pastTournaments": "Vergangene Turniere",
+    "myAccount": "Mein Konto",
+    "manageProfile": "Profil Verwalten",
+    "settings": "Einstellungen",
+    "logout": "Abmelden"
+  },
+  "dashboard": {
+    "title": "Turniere",
+    "loading": "Turniere werden geladen...",
+    "tournamentsAvailable": "{{count}} Turnier verfügbar",
+    "tournamentsAvailable_other": "{{count}} Turniere verfügbar",
+    "noTournaments": "Noch keine Turniere erstellt",
+    "noTournamentsTitle": "Noch Keine Turniere",
+    "noTournamentsDesc": "Erstellen Sie Ihr erstes Turnier, um zu beginnen",
+    "createTournament": "Turnier Erstellen",
+    "participants": "Teilnehmer",
+    "viewDetails": "Details Anzeigen",
+    "status": {
+      "upcoming": "Bevorstehend",
+      "ongoing": "Laufend",
+      "completed": "Abgeschlossen",
+      "cancelled": "Abgesagt"
+    },
+    "type": {
+      "singleElimination": "K.o.-System",
+      "doubleElimination": "Doppel-K.o.-System",
+      "roundRobin": "Jeder gegen Jeden",
+      "swiss": "Schweizer System",
+      "league": "Liga"
+    }
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "description": "Verwalten Sie Ihre Kontoeinstellungen und Sicherheitseinstellungen.",
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "description": "Konfigurieren Sie, wie Sie Updates erhalten",
+      "email": "E-Mail-Benachrichtigungen",
+      "emailDesc": "Erhalten Sie E-Mail-Updates über Ihr Konto",
+      "push": "Push-Benachrichtigungen",
+      "pushDesc": "Erhalten Sie Push-Benachrichtigungen auf Ihrem Gerät",
+      "tournament": "Turnier-Updates",
+      "tournamentDesc": "Lassen Sie sich über Turnieränderungen benachrichtigen"
+    },
+    "appearance": {
+      "title": "Erscheinungsbild",
+      "description": "Passen Sie das Aussehen der App an",
+      "darkMode": "Dunkler Modus",
+      "darkModeDesc": "Zu dunklem Design wechseln",
+      "language": "Sprache",
+      "languageDesc": "Wählen Sie Ihre bevorzugte Sprache",
+      "selectLanguage": "Sprache auswählen"
+    },
+    "security": {
+      "title": "Sicherheit & Datenschutz",
+      "description": "Verwalten Sie Ihre Sicherheitseinstellungen",
+      "twoFactor": "Zwei-Faktor-Authentifizierung",
+      "twoFactorDesc": "Fügen Sie eine zusätzliche Sicherheitsebene hinzu",
+      "publicProfile": "Öffentliches Profil",
+      "publicProfileDesc": "Machen Sie Ihr Profil für andere sichtbar",
+      "changePassword": "Passwort ändern"
+    },
+    "danger": {
+      "title": "Gefahrenzone",
+      "description": "Irreversible Aktionen",
+      "deleteAccount": "Konto löschen",
+      "deleteAccountDesc": "Löschen Sie Ihr Konto und alle Daten dauerhaft",
+      "deleteButton": "Konto löschen"
+    },
+    "cancel": "Abbrechen",
+    "save": "Änderungen speichern",
+    "saving": "Änderungen werden gespeichert...",
+    "saved": "Änderungen erfolgreich gespeichert! ✓",
+    "error": "Fehler beim Speichern der Änderungen"
+  }
+}

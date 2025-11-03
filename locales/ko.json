@@ -1,0 +1,100 @@
+{
+  "common": {
+    "loading": "로딩 중...",
+    "save": "저장",
+    "cancel": "취소",
+    "delete": "삭제",
+    "edit": "편집",
+    "create": "만들기",
+    "view": "보기",
+    "back": "뒤로",
+    "next": "다음",
+    "previous": "이전",
+    "search": "검색",
+    "filter": "필터",
+    "export": "내보내기",
+    "import": "가져오기"
+  },
+  "sidebar": {
+    "appName": "Y-Ultimate",
+    "newTournament": "새 토너먼트",
+    "tournaments": "토너먼트",
+    "sponsorships": "후원",
+    "gallery": "갤러리",
+    "myFixtures": "내 경기",
+    "pastTournaments": "지난 토너먼트",
+    "myAccount": "내 계정",
+    "manageProfile": "프로필 관리",
+    "settings": "설정",
+    "logout": "로그아웃"
+  },
+  "dashboard": {
+    "title": "토너먼트",
+    "loading": "토너먼트 로딩 중...",
+    "tournamentsAvailable": "{{count}}개의 토너먼트 사용 가능",
+    "tournamentsAvailable_other": "{{count}}개의 토너먼트 사용 가능",
+    "noTournaments": "아직 생성된 토너먼트가 없습니다",
+    "noTournamentsTitle": "토너먼트가 없습니다",
+    "noTournamentsDesc": "첫 번째 토너먼트를 만들어 시작하세요",
+    "createTournament": "토너먼트 만들기",
+    "participants": "참가자",
+    "viewDetails": "세부정보 보기",
+    "status": {
+      "upcoming": "예정",
+      "ongoing": "진행 중",
+      "completed": "완료",
+      "cancelled": "취소됨"
+    },
+    "type": {
+      "singleElimination": "단일 토너먼트",
+      "doubleElimination": "더블 토너먼트",
+      "roundRobin": "라운드 로빈",
+      "swiss": "스위스 시스템",
+      "league": "리그"
+    }
+  },
+  "settings": {
+    "title": "설정",
+    "description": "계정 기본 설정 및 보안 설정을 관리합니다.",
+    "notifications": {
+      "title": "알림",
+      "description": "업데이트 수신 방법 구성",
+      "email": "이메일 알림",
+      "emailDesc": "계정에 대한 이메일 업데이트 수신",
+      "push": "푸시 알림",
+      "pushDesc": "기기에서 푸시 알림 수신",
+      "tournament": "토너먼트 업데이트",
+      "tournamentDesc": "토너먼트 변경 사항에 대한 알림 받기"
+    },
+    "appearance": {
+      "title": "외관",
+      "description": "앱 모양 사용자 지정",
+      "darkMode": "다크 모드",
+      "darkModeDesc": "다크 테마로 전환",
+      "language": "언어",
+      "languageDesc": "선호하는 언어 선택",
+      "selectLanguage": "언어 선택"
+    },
+    "security": {
+      "title": "보안 및 개인정보",
+      "description": "보안 설정 관리",
+      "twoFactor": "2단계 인증",
+      "twoFactorDesc": "추가 보안 계층 추가",
+      "publicProfile": "공개 프로필",
+      "publicProfileDesc": "다른 사람들이 프로필을 볼 수 있도록 설정",
+      "changePassword": "비밀번호 변경"
+    },
+    "danger": {
+      "title": "위험 구역",
+      "description": "되돌릴 수 없는 작업",
+      "deleteAccount": "계정 삭제",
+      "deleteAccountDesc": "계정과 모든 데이터를 영구적으로 삭제",
+      "deleteButton": "계정 삭제"
+    },
+    "cancel": "취소",
+    "save": "변경 사항 저장",
+    "saving": "변경 사항 저장 중...",
+    "saved": "변경 사항이 성공적으로 저장되었습니다! ✓",
+    "error": "변경 사항 저장 실패"
+  }
+}

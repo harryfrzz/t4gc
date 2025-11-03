@@ -1,0 +1,100 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "view": "Ver",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "export": "Exportar",
+    "import": "Importar"
+  },
+  "sidebar": {
+    "appName": "Y-Ultimate",
+    "newTournament": "Nuevo Torneo",
+    "tournaments": "Torneos",
+    "sponsorships": "Patrocinios",
+    "gallery": "Galería",
+    "myFixtures": "Mis Partidos",
+    "pastTournaments": "Torneos Anteriores",
+    "myAccount": "Mi Cuenta",
+    "manageProfile": "Gestionar Perfil",
+    "settings": "Configuración",
+    "logout": "Cerrar Sesión"
+  },
+  "dashboard": {
+    "title": "Torneos",
+    "loading": "Cargando torneos...",
+    "tournamentsAvailable": "{{count}} torneo disponible",
+    "tournamentsAvailable_other": "{{count}} torneos disponibles",
+    "noTournaments": "Aún no se han creado torneos",
+    "noTournamentsTitle": "Aún No Hay Torneos",
+    "noTournamentsDesc": "Crea tu primer torneo para comenzar",
+    "createTournament": "Crear Torneo",
+    "participants": "participantes",
+    "viewDetails": "Ver Detalles",
+    "status": {
+      "upcoming": "Próximo",
+      "ongoing": "En Curso",
+      "completed": "Completado",
+      "cancelled": "Cancelado"
+    },
+    "type": {
+      "singleElimination": "Eliminación Simple",
+      "doubleElimination": "Eliminación Doble",
+      "roundRobin": "Round Robin",
+      "swiss": "Suizo",
+      "league": "Liga"
+    }
+  },
+  "settings": {
+    "title": "Configuración",
+    "description": "Administra las preferencias de tu cuenta y la configuración de seguridad.",
+    "notifications": {
+      "title": "Notificaciones",
+      "description": "Configura cómo recibes actualizaciones",
+      "email": "Notificaciones por correo electrónico",
+      "emailDesc": "Recibe actualizaciones por correo electrónico sobre tu cuenta",
+      "push": "Notificaciones push",
+      "pushDesc": "Recibe notificaciones push en tu dispositivo",
+      "tournament": "Actualizaciones de torneos",
+      "tournamentDesc": "Recibe notificaciones sobre cambios en torneos"
+    },
+    "appearance": {
+      "title": "Apariencia",
+      "description": "Personaliza cómo se ve la aplicación",
+      "darkMode": "Modo oscuro",
+      "darkModeDesc": "Cambiar a tema oscuro",
+      "language": "Idioma",
+      "languageDesc": "Selecciona tu idioma preferido",
+      "selectLanguage": "Seleccionar idioma"
+    },
+    "security": {
+      "title": "Seguridad y privacidad",
+      "description": "Administra tus preferencias de seguridad",
+      "twoFactor": "Autenticación de dos factores",
+      "twoFactorDesc": "Agrega una capa adicional de seguridad",
+      "publicProfile": "Perfil público",
+      "publicProfileDesc": "Haz que tu perfil sea visible para otros",
+      "changePassword": "Cambiar contraseña"
+    },
+    "danger": {
+      "title": "Zona de peligro",
+      "description": "Acciones irreversibles",
+      "deleteAccount": "Eliminar cuenta",
+      "deleteAccountDesc": "Elimina permanentemente tu cuenta y todos los datos",
+      "deleteButton": "Eliminar cuenta"
+    },
+    "cancel": "Cancelar",
+    "save": "Guardar cambios",
+    "saving": "Guardando cambios...",
+    "saved": "¡Cambios guardados correctamente! ✓",
+    "error": "Error al guardar cambios"
+  }
+}

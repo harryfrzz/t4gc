@@ -1,0 +1,100 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "view": "View",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import"
+  },
+  "sidebar": {
+    "appName": "Y-Ultimate",
+    "newTournament": "New Tournament",
+    "tournaments": "Tournaments",
+    "sponsorships": "Sponsorships",
+    "gallery": "Gallery",
+    "myFixtures": "My Fixtures",
+    "pastTournaments": "Past Tournaments",
+    "myAccount": "My Account",
+    "manageProfile": "Manage Profile",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "title": "Tournaments",
+    "loading": "Loading tournaments...",
+    "tournamentsAvailable": "{{count}} tournament available",
+    "tournamentsAvailable_other": "{{count}} tournaments available",
+    "noTournaments": "No tournaments created yet",
+    "noTournamentsTitle": "No Tournaments Yet",
+    "noTournamentsDesc": "Create your first tournament to get started",
+    "createTournament": "Create Tournament",
+    "participants": "participants",
+    "viewDetails": "View Details",
+    "status": {
+      "upcoming": "Upcoming",
+      "ongoing": "Ongoing",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "type": {
+      "singleElimination": "Single Elimination",
+      "doubleElimination": "Double Elimination",
+      "roundRobin": "Round Robin",
+      "swiss": "Swiss",
+      "league": "League"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Manage your account preferences and security settings.",
+    "notifications": {
+      "title": "Notifications",
+      "description": "Configure how you receive updates",
+      "email": "Email Notifications",
+      "emailDesc": "Receive email updates about your account",
+      "push": "Push Notifications",
+      "pushDesc": "Receive push notifications on your device",
+      "tournament": "Tournament Updates",
+      "tournamentDesc": "Get notified about tournament changes"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "description": "Customize how the app looks",
+      "darkMode": "Dark Mode",
+      "darkModeDesc": "Switch to dark theme",
+      "language": "Language",
+      "languageDesc": "Select your preferred language",
+      "selectLanguage": "Select language"
+    },
+    "security": {
+      "title": "Security & Privacy",
+      "description": "Manage your security preferences",
+      "twoFactor": "Two-Factor Authentication",
+      "twoFactorDesc": "Add an extra layer of security",
+      "publicProfile": "Public Profile",
+      "publicProfileDesc": "Make your profile visible to others",
+      "changePassword": "Change Password"
+    },
+    "danger": {
+      "title": "Danger Zone",
+      "description": "Irreversible actions",
+      "deleteAccount": "Delete Account",
+      "deleteAccountDesc": "Permanently delete your account and all data",
+      "deleteButton": "Delete Account"
+    },
+    "cancel": "Cancel",
+    "save": "Save Changes",
+    "saving": "Saving changes...",
+    "saved": "Changes saved successfully! ✓",
+    "error": "Failed to save changes"
+  }
+}

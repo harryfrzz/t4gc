@@ -1,0 +1,100 @@
+{
+  "common": {
+    "loading": "読み込み中...",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "edit": "編集",
+    "create": "作成",
+    "view": "表示",
+    "back": "戻る",
+    "next": "次へ",
+    "previous": "前へ",
+    "search": "検索",
+    "filter": "フィルター",
+    "export": "エクスポート",
+    "import": "インポート"
+  },
+  "sidebar": {
+    "appName": "Y-Ultimate",
+    "newTournament": "新しいトーナメント",
+    "tournaments": "トーナメント",
+    "sponsorships": "スポンサーシップ",
+    "gallery": "ギャラリー",
+    "myFixtures": "マイフィクスチャー",
+    "pastTournaments": "過去のトーナメント",
+    "myAccount": "マイアカウント",
+    "manageProfile": "プロフィール管理",
+    "settings": "設定",
+    "logout": "ログアウト"
+  },
+  "dashboard": {
+    "title": "トーナメント",
+    "loading": "トーナメントを読み込んでいます...",
+    "tournamentsAvailable": "{{count}} 個のトーナメントが利用可能",
+    "tournamentsAvailable_other": "{{count}} 個のトーナメントが利用可能",
+    "noTournaments": "まだトーナメントが作成されていません",
+    "noTournamentsTitle": "トーナメントがありません",
+    "noTournamentsDesc": "最初のトーナメントを作成して始めましょう",
+    "createTournament": "トーナメントを作成",
+    "participants": "参加者",
+    "viewDetails": "詳細を表示",
+    "status": {
+      "upcoming": "開催予定",
+      "ongoing": "進行中",
+      "completed": "完了",
+      "cancelled": "キャンセル済み"
+    },
+    "type": {
+      "singleElimination": "シングルエリミネーション",
+      "doubleElimination": "ダブルエリミネーション",
+      "roundRobin": "ラウンドロビン",
+      "swiss": "スイス式",
+      "league": "リーグ"
+    }
+  },
+  "settings": {
+    "title": "設定",
+    "description": "アカウントの設定とセキュリティ設定を管理します。",
+    "notifications": {
+      "title": "通知",
+      "description": "更新の受信方法を設定",
+      "email": "メール通知",
+      "emailDesc": "アカウントに関するメール更新を受信",
+      "push": "プッシュ通知",
+      "pushDesc": "デバイスでプッシュ通知を受信",
+      "tournament": "トーナメントの更新",
+      "tournamentDesc": "トーナメントの変更に関する通知を受け取る"
+    },
+    "appearance": {
+      "title": "外観",
+      "description": "アプリの外観をカスタマイズ",
+      "darkMode": "ダークモード",
+      "darkModeDesc": "ダークテーマに切り替え",
+      "language": "言語",
+      "languageDesc": "優先言語を選択",
+      "selectLanguage": "言語を選択"
+    },
+    "security": {
+      "title": "セキュリティとプライバシー",
+      "description": "セキュリティ設定を管理",
+      "twoFactor": "二要素認証",
+      "twoFactorDesc": "追加のセキュリティレイヤーを追加",
+      "publicProfile": "公開プロフィール",
+      "publicProfileDesc": "プロフィールを他のユーザーに表示",
+      "changePassword": "パスワードを変更"
+    },
+    "danger": {
+      "title": "危険ゾーン",
+      "description": "元に戻せない操作",
+      "deleteAccount": "アカウントを削除",
+      "deleteAccountDesc": "アカウントとすべてのデータを完全に削除",
+      "deleteButton": "アカウントを削除"
+    },
+    "cancel": "キャンセル",
+    "save": "変更を保存",
+    "saving": "変更を保存中...",
+    "saved": "変更が正常に保存されました！✓",
+    "error": "変更の保存に失敗しました"
+  }
+}

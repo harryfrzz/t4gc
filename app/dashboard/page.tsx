@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { getAllTournaments } from "@/lib/api/tournaments";
 import { Tournament } from "@/types/tournaments";
 import { useAuth } from "@/lib/auth-context";
+import { useTranslation } from "react-i18next";
 
 const getStatusColor = (status: string) => {
   switch (status) {
@@ -20,23 +21,36 @@ const getStatusColor = (status: string) => {
   }
 };
 
-const getTypeLabel = (type: string) => {
-  switch (type) {
-    case 'SINGLE_ELIMINATION': return 'Single Elimination';
-    case 'DOUBLE_ELIMINATION': return 'Double Elimination';
-    case 'ROUND_ROBIN': return 'Round Robin';
-    case 'SWISS': return 'Swiss';
-    case 'LEAGUE': return 'League';
-    default: return type;
-  }
-};
-
 export default function DashboardPage() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [loading, setLoading] = useState(true);
   
   const isEventHoster = user?.role === "event-hoster";
+
+  // Translation helper for tournament types
+  const getTypeLabel = (type: string) => {
+    const typeMap: { [key: string]: string } = {
+      'SINGLE_ELIMINATION': t('dashboard.type.singleElimination'),
+      'DOUBLE_ELIMINATION': t('dashboard.type.doubleElimination'),
+      'ROUND_ROBIN': t('dashboard.type.roundRobin'),
+      'SWISS': t('dashboard.type.swiss'),
+      'LEAGUE': t('dashboard.type.league'),
+    };
+    return typeMap[type] || type;
+  };
+
+  // Translation helper for status
+  const getStatusLabel = (status: string) => {
+    const statusMap: { [key: string]: string } = {
+      'UPCOMING': t('dashboard.status.upcoming'),
+      'ONGOING': t('dashboard.status.ongoing'),
+      'COMPLETED': t('dashboard.status.completed'),
+      'CANCELLED': t('dashboard.status.cancelled'),
+    };
+    return statusMap[status] || status;
+  };
 
   useEffect(() => {
     loadTournaments();
@@ -47,13 +61,9 @@ export default function DashboardPage() {
       setLoading(true);
       const response = await getAllTournaments();
       
-      // For normal users, show only registered tournaments (mock - you can add registration logic)
-      // For event hosters, show all tournaments
       if (isEventHoster) {
         setTournaments(response.data);
       } else {
-        // Mock registered tournaments - filter to show only tournaments with UPCOMING or ONGOING status
-        // In real implementation, this would check user's registration status
         const registeredTournaments = response.data.filter(t => 
           t.status === 'UPCOMING' || t.status === 'ONGOING'
         );
@@ -70,8 +80,8 @@ export default function DashboardPage() {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold">Dashboard</h1>
-          <p className="text-neutral-600 mt-1">Loading tournaments...</p>
+          <h1 className="text-2xl font-bold">{t('dashboard.title')}</h1>
+          <p className="text-neutral-600 mt-1">{t('dashboard.loading')}</p>
         </div>
         <div className="flex items-center justify-center min-h-[400px]">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -83,11 +93,11 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Tournaments</h1>
+        <h1 className="text-2xl font-bold">{t('dashboard.title')}</h1>
         <p className="text-neutral-600 mt-1">
           {tournaments.length > 0 
-            ? `${tournaments.length} tournament${tournaments.length > 1 ? 's' : ''} available` 
-            : 'No tournaments created yet'}
+            ? t('dashboard.tournamentsAvailable', { count: tournaments.length })
+            : t('dashboard.noTournaments')}
         </p>
       </div>
       
@@ -95,13 +105,13 @@ export default function DashboardPage() {
         <Card className="border-dashed">
           <CardContent className="flex flex-col items-center justify-center py-16">
             <Trophy className="h-16 w-16 text-neutral-400 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">No Tournaments Yet</h3>
-            <p className="text-neutral-600 mb-6">Create your first tournament to get started</p>
+            <h3 className="text-xl font-semibold mb-2">{t('dashboard.noTournamentsTitle')}</h3>
+            <p className="text-neutral-600 mb-6">{t('dashboard.noTournamentsDesc')}</p>
             <Link 
               href="/tournaments/create"
               className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
             >
-              Create Tournament
+              {t('dashboard.createTournament')}
             </Link>
           </CardContent>
         </Card>
@@ -119,7 +129,7 @@ export default function DashboardPage() {
                     <div className="flex items-start justify-between mb-2">
                       <CardTitle className="text-lg line-clamp-1">{tournament.name}</CardTitle>
                       <Badge className={getStatusColor(tournament.status)} variant="secondary">
-                        {tournament.status}
+                        {getStatusLabel(tournament.status)}
                       </Badge>
                     </div>
                     <CardDescription className="line-clamp-2">
@@ -141,10 +151,10 @@ export default function DashboardPage() {
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
                       <Users className="h-4 w-4 mr-2" />
-                      {tournament.currentParticipants}/{tournament.maxParticipants} participants
+                      {tournament.currentParticipants}/{tournament.maxParticipants} {t('dashboard.participants')}
                     </div>
                     <div className="pt-2 flex items-center text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
-                      View Details
+                      {t('dashboard.viewDetails')}
                       <ArrowRight className="h-4 w-4 ml-1" />
                     </div>
                   </CardContent>
