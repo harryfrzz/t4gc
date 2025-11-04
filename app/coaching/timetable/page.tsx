@@ -26,6 +26,23 @@ import { ArrowLeft, Clock, MapPin, User, Plus, Edit, Trash2, GraduationCap } fro
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/lib/auth-context';
 
+// Type definitions
+interface ClassItem {
+  time: string;
+  subject: string;
+  instructor: string;
+  room: string;
+  duration: number;
+}
+
+interface TimetableData {
+  Monday: ClassItem[];
+  Tuesday: ClassItem[];
+  Wednesday: ClassItem[];
+  Thursday: ClassItem[];
+  Friday: ClassItem[];
+}
+
 export default function TimetablePage() {
   const router = useRouter();
   const { user } = useAuth();
@@ -40,7 +57,7 @@ export default function TimetablePage() {
   const [assignClassDialogOpen, setAssignClassDialogOpen] = useState(false);
   const [newClassName, setNewClassName] = useState('');
   const [selectedSlot, setSelectedSlot] = useState<{ day: string; time: string } | null>(null);
-  const [editingClass, setEditingClass] = useState<any>(null);
+  const [editingClass, setEditingClass] = useState<ClassItem | null>(null);
   
   // Form state for adding/editing slots
   const [slotForm, setSlotForm] = useState({
@@ -83,7 +100,7 @@ export default function TimetablePage() {
   const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   
   // Timetable data by class
-  const [timetablesByClass, setTimetablesByClass] = useState<{ [key: string]: any }>({
+  const [timetablesByClass, setTimetablesByClass] = useState<{ [key: string]: TimetableData }>({
     '10th Standard': {
       Monday: [
         { time: '9:00 AM', subject: 'Mathematics', instructor: 'Dr. Sarah Johnson', room: 'Room 101', duration: 1.5 },
@@ -172,7 +189,7 @@ export default function TimetablePage() {
     }
   });
 
-  const timetableData = timetablesByClass[selectedClass] || {
+  const timetableData: TimetableData = timetablesByClass[selectedClass] || {
     Monday: [],
     Tuesday: [],
     Wednesday: [],
