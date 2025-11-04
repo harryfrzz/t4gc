@@ -102,15 +102,3 @@ ENV_SETUP.md            # Environment setup notes (see file)
 - Backend: deploy to a node host / service (Heroku/Render/DigitalOcean/AWS) with secure environment variables and a managed database.
 - Configure a production DB (Postgres or similar), backups, and monitoring for attendance & scoring critical data.
 
-## Contributing
-1. Open an issue for major features or bug reports.
-2. Create a branch per issue (`feature/…` or `fix/…`).
-3. Submit PRs with clear descriptions and small, focused changes.
-4. Ensure tests pass and add tests where appropriate.
-
-## License
-MIT Licence
-## Contact / maintainers
-- Repo owner / maintainer: `harryfrzz` (GitHub)
-- For questions, open an issue or contact the maintainers via the project’s issue tracker.
-
