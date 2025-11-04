@@ -72,12 +72,22 @@ export default function LoginPage() {
               </div>
             )}
 
-            <div className="text-xs text-muted-foreground bg-blue-50 border border-blue-200 rounded-md p-3">
-              <strong>Test Credentials:</strong>
-              <br />
-              <strong>Regular User:</strong> test@example.com / test123
-              <br />
-              <strong>Admin:</strong> admin@example.com / admin123
+            <div className="text-xs bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-md p-3 space-y-2">
+              <div className="font-semibold text-blue-900 dark:text-blue-100">Test Credentials:</div>
+              <div className="grid grid-cols-1 gap-1.5">
+                <div className="text-muted-foreground">
+                  <span className="font-medium text-foreground">User:</span> test@example.com / test123
+                </div>
+                <div className="text-muted-foreground">
+                  <span className="font-medium text-foreground">Admin:</span> admin@example.com / admin123
+                </div>
+                <div className="text-muted-foreground">
+                  <span className="font-medium text-foreground">Coach:</span> coach@example.com / coach123
+                </div>
+                <div className="text-muted-foreground">
+                  <span className="font-medium text-foreground">Student:</span> student@example.com / student123
+                </div>
+              </div>
             </div>
 
             <Button type="submit" className="w-full">

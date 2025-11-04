@@ -1,14 +1,23 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/auth-context";
+import { useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trophy, Users } from "lucide-react";
+import { Trophy, Users, GraduationCap, ClipboardCheck } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function RoleSelectionPage() {
   const router = useRouter();
+  const { user, isAuthenticated } = useAuth();
 
-  const roles = [
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push("/auth/login");
+    }
+  }, [isAuthenticated, router]);
+
+  const baseRoles = [
     {
       title: "Tournament Management",
       description: "Create and manage tournaments, track participants, and organize events",
@@ -25,18 +34,50 @@ export default function RoleSelectionPage() {
     }
   ];
 
+  // Add role-specific cards
+  const roleSpecificCards = [];
+
+  if (user?.role === "student") {
+    roleSpecificCards.push({
+      title: "My Attendance",
+      description: "View your QR code, attendance summary, and performance trends",
+      icon: GraduationCap,
+      href: "/student/dashboard",
+      gradient: "from-purple-500 to-pink-600"
+    });
+  }
+
+  if (user?.role === "coach") {
+    roleSpecificCards.push({
+      title: "Mark Attendance",
+      description: "Mark attendance using QR scan or manual entry for your sessions",
+      icon: ClipboardCheck,
+      href: "/coach/attendance",
+      gradient: "from-orange-500 to-red-600"
+    });
+  }
+
+  const allRoles = [...baseRoles, ...roleSpecificCards];
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-950 dark:to-neutral-900 p-4">
       <div className="max-w-4xl w-full space-y-8">
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-2">Welcome!</h1>
+          <h1 className="text-4xl font-bold mb-2">
+            Welcome{user ? `, ${user.name}` : ''}! 👋
+          </h1>
           <p className="text-neutral-600 dark:text-neutral-400">
             Choose your management area to continue
           </p>
+          {user && (
+            <p className="text-sm text-muted-foreground mt-2">
+              Role: <span className="font-medium capitalize">{user.role}</span>
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {roles.map((role, index) => (
+          {allRoles.map((role, index) => (
             <motion.div
               key={role.title}
               initial={{ opacity: 0, y: 20 }}

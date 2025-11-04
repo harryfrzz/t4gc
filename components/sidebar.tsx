@@ -4,7 +4,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-context";
 import { usePathname, useRouter } from "next/navigation";
-import { LogOut, User, Settings, Plus, FileText } from "lucide-react";
+import { LogOut, User, Settings, Plus, FileText, ClipboardCheck, QrCode } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
   DropdownMenu,
@@ -38,6 +38,8 @@ export function Sidebar() {
                                pathname.startsWith("/gallery");
   
   const isCoachingSection = pathname.startsWith("/coaching");
+  const isStudentSection = pathname.startsWith("/student");
+  const isCoachSection = pathname.startsWith("/coach");
 
   const getInitial = () => {
     return user?.name.charAt(0).toUpperCase() || "U";
@@ -148,6 +150,36 @@ export function Sidebar() {
               {t('sidebar.coaching')}
             </Link>
             {/* Add more coaching-related links here */}
+          </>
+        )}
+
+        {isStudentSection && user?.role === "student" && (
+          <>
+            <Link 
+              href="/student/dashboard" 
+              className={cn(
+                "px-3 py-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 transition flex items-center gap-2",
+                pathname === "/student/dashboard" && "bg-neutral-100 dark:bg-neutral-800 font-medium"
+              )}
+            >
+              <QrCode className="h-4 w-4" />
+              {t('sidebar.myAttendance', 'My Attendance')}
+            </Link>
+          </>
+        )}
+
+        {isCoachSection && user?.role === "coach" && (
+          <>
+            <Link 
+              href="/coach/attendance" 
+              className={cn(
+                "px-3 py-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 transition flex items-center gap-2",
+                pathname === "/coach/attendance" && "bg-neutral-100 dark:bg-neutral-800 font-medium"
+              )}
+            >
+              <ClipboardCheck className="h-4 w-4" />
+              {t('sidebar.markAttendance', 'Mark Attendance')}
+            </Link>
           </>
         )}
       </nav>
