@@ -112,13 +112,23 @@ export default function TournamentsPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Tournament Management</h1>
-        <p className="text-neutral-600 dark:text-neutral-400 mt-1">
-          {tournaments.length > 0 
-            ? t('dashboard.tournamentsAvailable', { count: tournaments.length })
-            : t('dashboard.noTournaments')}
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Tournament Management</h1>
+          <p className="text-neutral-600 dark:text-neutral-400 mt-1">
+            {tournaments.length > 0 
+              ? t('dashboard.tournamentsAvailable', { count: tournaments.length })
+              : t('dashboard.noTournaments')}
+          </p>
+        </div>
+        {user?.role === 'teacher' && (
+          <Link href="/tournaments/create">
+            <Button>
+              <Trophy className="h-4 w-4 mr-2" />
+              {t('dashboard.createTournament')}
+            </Button>
+          </Link>
+        )}
       </div>
       
       {tournaments.length === 0 ? (
