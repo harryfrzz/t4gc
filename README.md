@@ -1,10 +1,10 @@
-# Y-Ultimate Management Platform 
+# CampusArena Management Platform 
 
 A unified, open-source platform to digitize and manage tournaments and coaching programmes.  
 This repository provides a Next.js frontend and supporting backend modules to replace ad-hoc Google Sheets and Forms with a connected, data-driven system for tournaments, players, coaches, volunteers and programme administrators.
 
 ## Mission
-Enable Y-Ultimate to centralize historical data, streamline workflows, and increase visibility and engagement across tournaments and coaching programmes - improving operational transparency and program impact measurement.
+Enable CampusArena to centralize historical data, streamline workflows, and increase visibility and engagement across tournaments and coaching programmes - improving operational transparency and program impact measurement.
 
 ## Key capabilities
 **Tournament Management**
