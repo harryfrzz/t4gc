@@ -72,7 +72,7 @@ export default function UserRegistrationPage() {
       <Card className="w-full max-w-2xl">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold">Create User Account</CardTitle>
-          <CardDescription>Join Y-Ultimate as a participant</CardDescription>
+          <CardDescription>Join CampusArena as a participant</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
