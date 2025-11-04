@@ -1,6 +1,6 @@
 # Y-Ultimate Management Platform 
 
-A unified, open-source platform to digitize and manage Y-Ultimate’s tournaments and coaching programmes.  
+A unified, open-source platform to digitize and manage tournaments and coaching programmes.  
 This repository provides a Next.js frontend and supporting backend modules to replace ad-hoc Google Sheets and Forms with a connected, data-driven system for tournaments, players, coaches, volunteers and programme administrators.
 
 ## Mission
@@ -18,6 +18,7 @@ Enable Y-Ultimate to centralize historical data, streamline workflows, and incre
 - Centralized child/student profiles with transfer & attendance tracking
 - Home visit and LSAS assessment data integration
 - Real-time session visibility and coach workload tracking
+- Push notification/Automated email system
 - Automated reporting: participation, gender ratio, and impact metrics
 
 ## Repository layout (high level)
