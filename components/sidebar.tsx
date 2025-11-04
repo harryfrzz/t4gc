@@ -72,16 +72,7 @@ export function Sidebar() {
             >
               {t('sidebar.tournaments')}
             </Link>
-            <Link 
-              href="/forms" 
-              className={cn(
-                "px-3 py-2 rounded-md hover:bg-neutral-100 transition flex items-center gap-2",
-                pathname.startsWith("/forms") && "bg-neutral-100 font-medium"
-              )}
-            >
-              <FileText className="h-4 w-4" />
-              {t('sidebar.forms')}
-            </Link>
+           
             {user?.role === "admin" && (
               <Link 
                 href="/sponsorship" 
