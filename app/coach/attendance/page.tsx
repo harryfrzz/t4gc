@@ -35,7 +35,7 @@ export default function CoachAttendancePage() {
   const [activeTab, setActiveTab] = useState<'qr' | 'manual'>('qr');
 
   useEffect(() => {
-    if (!isAuthenticated || user?.role !== 'coach') {
+    if (!isAuthenticated || (user?.role !== 'teacher' && user?.role !== 'admin')) {
       router.push('/auth/login');
       return;
     }

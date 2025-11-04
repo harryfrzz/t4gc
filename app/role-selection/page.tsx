@@ -47,7 +47,7 @@ export default function RoleSelectionPage() {
     });
   }
 
-  if (user?.role === "coach") {
+  if (user?.role === "teacher" || user?.role === "admin") {
     roleSpecificCards.push({
       title: "Mark Attendance",
       description: "Mark attendance using QR scan or manual entry for your sessions",
